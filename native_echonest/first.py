@@ -1,3 +1,6 @@
+import sys, os
+
+
 import echonest.audio as audio
 import random
 
@@ -11,7 +14,7 @@ def chunks(l, n):
 
 # /Lib
 
-subject = audio.LocalAudioFile("cloak-and-dagger-2.mp3")
+subject = audio.LocalAudioFile(sys.argv[1])
 
 beats = subject.analysis.beats
 
@@ -24,6 +27,4 @@ while slices:
         new_slices.append(j)
 
 
-audio.getpieces(subject, new_slices).encode("SweetSweetHax.mp3")
-
-
+audio.getpieces(subject, new_slices).encode("%s-improved.mp3" % os.path.basename(sys.argv[1][:-4]))
